@@ -8,6 +8,23 @@ testnickname="Cap" -- example nickname from .listninja
 -- CONFIG --
 
 -- don't edit below unless you know what you're doing --
+
+
+function ListNinjaFilter(self,event,msg)
+  local badWords = {"ninja","looter"}
+  local matchCount = 0;
+  for _, word in ipairs(badWords) do
+    if (string.match(msg, word)) then
+      matchCount = matchCount + 1;
+    end
+  end
+  if (matchCount > 1) then
+    return true;
+  else
+    return false;
+  end
+end
+
  if not NINJAS then
 	NINJAS = CreateFrame("Frame")
  end
@@ -21,11 +38,11 @@ testnickname="Cap" -- example nickname from .listninja
 		local raidlist={}
 		if(event == "RAID_INSTANCE_WELCOME" or event == "RAID_ROSTER_UPDATE")
 		then
+			ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM",ListNinjaFilter)
 			SendChatMessage(".listninja ", "SAY", DEFAULT_CHAT_FRAME.editBox.languageID);
 		end	
 		if(event == "CHAT_MSG_SYSTEM")
 		then
-			--ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM",true) --disable sunwell notification
 		   local system_msg = select(1, ...)
 		    if (system_msg:find("Warning! Player:.") ~= nil) then
 				local robbers = {}
@@ -33,33 +50,55 @@ testnickname="Cap" -- example nickname from .listninja
 				sub_system_msg = strsub (system_msg, 17)
 				robbers[1], robbers[2] = sub_system_msg:match("(%w+)(.+)")
 				--print(robbers[1])
-				--print("NumRaidMembers "..GetNumRaidMembers())
-				for i=1,GetNumRaidMembers() do
-					local u="raid"..i 
-					raidlist[u]=UnitName(u)
-					--DEBUG START--
-					if(devmode==true)
-					then
-						raidlist[u]=testnickname
-					end					
-					--DEBUG END----
-					if(raidlist[u]==robbers[1])
-					then
-						attentionrobbers=robbers[1]			
-					else
-						attentionrobbers=0
-					end
-				end				
+				--print("NumPartyMembers "..GetNumPartyMembers())
+				if(GetNumPartyMembers() > 0) then
+					for i=1,GetNumPartyMembers() do
+						local u="party"..i 
+						raidlist[u]=UnitName(u)
+						--DEBUG START--
+						if(devmode==true)
+						then
+							raidlist[u]=testnickname
+						end					
+						--DEBUG END----
+						if(raidlist[u]==robbers[1])
+						then
+							attentionrobbers=robbers[1]			
+						else
+							attentionrobbers=0
+						end
+					end		
+				--print("NumRaidMembers "..GetNumRaidMembers())					
+				elseif(GetNumRaidMembers() > 0) then				
+					for i=1,GetNumRaidMembers() do
+						local u="raid"..i 
+						raidlist[u]=UnitName(u)
+						--DEBUG START--
+						if(devmode==true)
+						then
+							raidlist[u]=testnickname
+						end					
+						--DEBUG END----
+						if(raidlist[u]==robbers[1])
+						then
+							attentionrobbers=robbers[1]			
+						else
+							attentionrobbers=0
+						end
+					end	
+				end
+				
 				if(attentionrobbers~=0)
 				then
 					if(addonnotification==true)then UIErrorsFrame:AddMessage("Ninjalooter in your party: " ..attentionrobbers)	end
-					if(addonemote==true)then SendChatMessage("sees ninjalooter in your party: " ..attentionrobbers, "EMOTE", DEFAULT_CHAT_FRAME.editBox.languageID) end			
+					if(addonemote==true)then SendChatMessage("sees ninjalooter in your party: " ..attentionrobbers.." [Ninja looter Alert]", "EMOTE", DEFAULT_CHAT_FRAME.editBox.languageID) end			
 					if(soundalert==true)then PlaySound("AuctionWindowOpen")	end
 					attentionrobbers=0			
 				end
 			else	
-				--ChatFrame_RemoveMessageEventFilter("CHAT_MSG_SYSTEM", true)	-- enable sunwell notification					
+				ChatFrame_RemoveMessageEventFilter("CHAT_MSG_SYSTEM",ListNinjaFilter)					
 		    end
+		
 	    end	
 	end
 
