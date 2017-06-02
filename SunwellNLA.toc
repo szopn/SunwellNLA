@@ -1,7 +1,7 @@
 ## Interface: 30300
-## Title: Sunwell Ninja Alert
-## Notes: Add-on that will tell you when a ninjalooter is in your group
-## Author: Deadwood / peter
+## Title: Sunwell Ninja Looter Alert
+## Notes: kick them all
+## Author: Deadwood / szopn
 ## Version: v1.0
 
 NLA.lua

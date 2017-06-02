@@ -1,3 +1,5 @@
+--[[ 	Sunwell Ninja Looter Alert by Deadwood/szopn 	]]--
+
 -- CONFIG --
 -- true/false - enable/disable
 addonnotification=true
@@ -7,9 +9,9 @@ devmode=false
 testnickname="Cap" -- example nickname from .listninja
 -- CONFIG --
 
+--------------------------------------------------------
 -- don't edit below unless you know what you're doing --
-
-
+--------------------------------------------------------
 function ListNinjaFilter(self,event,msg)
   local badWords = {"ninja","looter"}
   local matchCount = 0;
@@ -91,7 +93,7 @@ end
 				if(attentionrobbers~=0)
 				then
 					if(addonnotification==true)then UIErrorsFrame:AddMessage("Ninjalooter in your party: " ..attentionrobbers)	end
-					if(addonemote==true)then SendChatMessage("sees ninjalooter in your party: " ..attentionrobbers.." [Ninja looter Alert]", "EMOTE", DEFAULT_CHAT_FRAME.editBox.languageID) end			
+					if(addonemote==true)then SendChatMessage("sees ninjalooter in your party: " ..attentionrobbers.." [NLA]", "EMOTE", DEFAULT_CHAT_FRAME.editBox.languageID) end			
 					if(soundalert==true)then PlaySound("AuctionWindowOpen")	end
 					attentionrobbers=0			
 				end
