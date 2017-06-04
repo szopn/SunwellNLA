@@ -1,5 +1,5 @@
 ## Interface: 30300
-## Title: Sunwell Ninja Looter Alert
+## Title: Sunwell Ninja Looter Alert by Deadwood
 ## Notes: kick them all
 ## Author: Deadwood / szopn
 ## Version: v1.0
