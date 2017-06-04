@@ -19,4 +19,4 @@ testnickname="Cap" -- example nickname from .listninja
 
 Przy uzyciu komeny ```/nla help```  mozemy sprawdzic krotki opis dzialania addonu
 ```/nla``` - Pokazuje sunwellowa liste (.listninja) wraz z ostrzeżeniem jesli w naszej grupie znajduje sie osoba z tej listy
-```/nla reset```` - Usuwa z pamieciu nicku osob pojawionych sie w ostrzeżeniach ( w tej grupie )
+```/nla reset``` - Usuwa z pamieciu nicku osob pojawionych sie w ostrzeżeniach ( w tej grupie )
