@@ -3,7 +3,7 @@
 -- CONFIG --
 -- true/false - enable/disable
 addonnotification=true
-addonemote=false
+addonemote=true
 soundalert=true 
 devmode=false
 testnickname="Cap" -- example nickname from .listninja
@@ -151,8 +151,8 @@ local function handler(msg, editbox)
 	if msg == 'help' 
 	then
 		print('NLA commands:');
-		print('    /nla - Pokazuje sunwellowa liste (.listninja) wraz z komunikatami ninja looterow w twoim party');
-		print('    /nla reset - Resetuje liste o powiadomionych do tej pory ninjalooterach w grupie');		
+		print('    /nla - Pokazuje sunwellowa liste (.listninja) wraz z ostrzeżeniem jesli w naszej grupie znajduje sie osoba z tej listy');
+		print('    /nla reset - Usuwa z pamieciu nicku osob pojawionych sie w ostrzeżeniach ( w tej grupie )');		
 	elseif msg =='reset' 
 	then
 		for k,v in pairs(nrobbers) 
