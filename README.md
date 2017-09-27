@@ -1,4 +1,4 @@
-Wow addon for wotlk 3.3.5 private server sunwell.pl
+Out of date wow addon for wotlk private server sunwell.pl
 
 Settings
 ```
