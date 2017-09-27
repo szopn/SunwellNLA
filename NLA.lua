@@ -40,18 +40,19 @@ end
 local frame = NINJAS
 
 frame:RegisterEvent("CHAT_MSG_SYSTEM")
-frame:RegisterEvent("RAID_INSTANCE_WELCOME")
-frame:RegisterEvent("RAID_ROSTER_UPDATE")
-frame:RegisterEvent("PARTY_MEMBERS_CHANGED")
-frame:RegisterEvent("PARTY_LOOT_METHOD_CHANGED")
-frame:RegisterEvent("PARTY_LEADER_CHANGED")
+--frame:RegisterEvent("RAID_INSTANCE_WELCOME")
+--frame:RegisterEvent("RAID_ROSTER_UPDATE")
+--frame:RegisterEvent("PARTY_MEMBERS_CHANGED")
+--frame:RegisterEvent("PARTY_LOOT_METHOD_CHANGED")
+--frame:RegisterEvent("PARTY_LEADER_CHANGED")
 frame:SetScript("OnEvent", function(self, event, ...)
 		local raidlist={}
-		if(event == "RAID_INSTANCE_WELCOME" or event == "RAID_ROSTER_UPDATE" or event == "PARTY_MEMBERS_CHANGED" or event == "PARTY_LOOT_METHOD_CHANGED" or event == "PARTY_LEADER_CHANGED")
-		then
-			ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM",ListNinjaFilter)
-			SendChatMessage(".listninja ", "SAY", DEFAULT_CHAT_FRAME.editBox.languageID);
-		end	
+		
+		--if(event == "RAID_INSTANCE_WELCOME" or event == "RAID_ROSTER_UPDATE" or event == "PARTY_MEMBERS_CHANGED" or event == "PARTY_LOOT_METHOD_CHANGED" or event == "PARTY_LEADER_CHANGED")
+		--then
+		--	ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM",ListNinjaFilter)
+		--	SendChatMessage(".listninja ", "SAY", DEFAULT_CHAT_FRAME.editBox.languageID);
+		--end	
 		
 		if(event == "CHAT_MSG_SYSTEM")
 		then
